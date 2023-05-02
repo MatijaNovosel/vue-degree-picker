@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MatijaNovosel/vue-date-picker.git"
+    "url": "git+https://github.com/MatijaNovosel/vue-degree-picker.git"
   },
   "keywords": [
     "degrees",
