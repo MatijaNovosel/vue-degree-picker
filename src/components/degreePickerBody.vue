@@ -181,130 +181,147 @@ watch(
 );
 </script>
 
-<style lang="sass" scoped>
-@import "./variables.scss"
+<style scoped>
+.degree-picker-clock {
+  font-family: "Roboto";
+  background-color: #eee;
+  border-radius: 100%;
+  position: relative;
+  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  user-select: none;
+  width: 100%;
+  padding-top: 100%;
+  flex: 1 0 auto;
+}
 
-.degree-picker-clock
-  font-family: "Roboto"
-  background-color: #eee
-  border-radius: 100%
-  position: relative
-  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)
-  user-select: none
-  width: 100%
-  padding-top: 100%
-  flex: 1 0 auto
+.degree-picker-clock__item--disabled {
+  color: pink;
+}
 
-  &__item--disabled
-    color: pink
+.degree-picker-clock__item--disabled.degree-picker-clock__item--active {
+  color: purple;
+}
 
-    &.degree-picker-clock__item--active
-      color: purple
+.degree-picker-clock--indeterminate .degree-picker-clock__hand {
+  background-color: #bdbdbd;
+}
 
-  &--indeterminate
-    .degree-picker-clock__hand
-      background-color: #bdbdbd
+.degree-picker-clock--indeterminate:after {
+  color: yellow;
+}
 
-    &:after
-      color: yellow
+.degree-picker-clock--indeterminate .degree-picker-clock__item--active {
+  background-color: #bdbdbd;
+}
 
-    .degree-picker-clock__item--active
-      background-color: #bdbdbd
+.degree-picker-clock__container {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 290px;
+  justify-content: center;
+  padding: 10px;
+}
 
-  &__container
-    display: flex
-    flex-direction: column
-    flex-basis: 290px
-    justify-content: center
-    padding: $degree-picker-clock-padding
+.degree-picker-clock__hand {
+  height: calc(50% - 4px);
+  width: 2px;
+  bottom: 50%;
+  left: calc(50% - 1px);
+  transform-origin: center bottom;
+  position: absolute;
+  will-change: transform;
+  z-index: 1;
+}
 
-  &__hand
-    height: $degree-picker-clock-hand-height
-    width: $degree-picker-clock-hand-width
-    bottom: 50%
-    left: $degree-picker-clock-hand-left
-    transform-origin: center bottom
-    position: absolute
-    will-change: transform
-    z-index: 1
+.degree-picker-clock__hand:before {
+  background: transparent;
+  border-width: 2px;
+  border-style: solid;
+  border-color: v-bind(color);
+  border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    &:before
-      background: transparent
-      border-width: $degree-picker-clock-end-border-width
-      border-style: $degree-picker-clock-end-border-style
-      border-color: v-bind(color)
-      border-radius: 100%
-      width: $degree-picker-clock-end-size
-      height: $degree-picker-clock-end-size
-      content: ''
-      position: absolute
-      top: $degree-picker-clock-end-top
-      left: 50%
-      transform: translate(-50%, -50%)
+.degree-picker-clock__hand:after {
+  content: "";
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  top: 100%;
+  left: 50%;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: v-bind("color");
+  background-color: v-bind("color");
+  transform: translate(-50%, -50%);
+}
 
-    &:after
-      content: ''
-      position: absolute
-      height: $degree-picker-clock-center-size
-      width: $degree-picker-clock-center-size
-      top: 100%
-      left: 50%
-      border-radius: 100%
-      border-style: solid
-      border-color: v-bind('color')
-      background-color: v-bind('color')
-      transform: translate(-50%, -50%)
+.degree-picker-clock__hand--inner:after {
+  height: 14px;
+}
 
-    &--inner:after
-      height: $degree-picker-clock-inner-hand-height
+.picker--full-width .degree-picker-clock__container {
+  max-width: 290px;
+}
 
-.picker--full-width
-  .degree-picker-clock__container
-    max-width: $degree-picker-clock-max-width
+.degree-picker-clock__inner {
+  position: absolute;
+  bottom: 27px;
+  left: 27px;
+  right: 27px;
+  top: 27px;
+}
 
-.degree-picker-clock__inner
-  position: absolute
-  bottom: $degree-picker-clock-inner-offset
-  left: $degree-picker-clock-inner-offset
-  right: $degree-picker-clock-inner-offset
-  top: $degree-picker-clock-inner-offset
+.degree-picker-clock__item {
+  align-items: center;
+  border-radius: 100%;
+  cursor: default;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  height: 40px;
+  position: absolute;
+  text-align: center;
+  width: 40px;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
 
-.degree-picker-clock__item
-  align-items: center
-  border-radius: 100%
-  cursor: default
-  display: flex
-  font-size: $degree-picker-number-font-size
-  justify-content: center
-  height: $degree-picker-indicator-size
-  position: absolute
-  text-align: center
-  width: $degree-picker-indicator-size
-  user-select: none
-  transform: translate(-50%, -50%)
+.degree-picker-clock__item > span {
+  z-index: 1;
+}
 
-  > span
-    z-index: 1
+.degree-picker-clock__item:before,
+.degree-picker-clock__item:after {
+  content: "";
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 14px;
+  width: 14px;
+  transform: translate(-50%, -50%);
+}
 
-  &:before, &:after
-    content: ''
-    border-radius: 100%
-    position: absolute
-    top: 50%
-    left: 50%
-    height: 14px
-    width: 14px
-    transform: translate(-50%, -50%)
+.degree-picker-clock__item:after,
+.degree-picker-clock__item:before {
+  height: 40px;
+  width: 40px;
+}
 
-  &:after, &:before
-    height: $degree-picker-indicator-size
-    width: $degree-picker-indicator-size
+.degree-picker-clock__item--active {
+  color: white;
+  cursor: default;
+  z-index: 2;
+}
 
-  &--active
-    color: white
-    cursor: default
-    z-index: 2
-
-  &--disabled
-    pointer-events: none
+.degree-picker-clock__item--disabled {
+  pointer-events: none;
+}
 </style>
