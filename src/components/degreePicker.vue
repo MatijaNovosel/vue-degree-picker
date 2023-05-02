@@ -6,7 +6,7 @@
   >
     <degree-picker-body
       :active-color="activeColor"
-      :body-color="activeColor"
+      :body-color="bodyColor"
       @input="onInput"
       @change="onChange"
       :step="step || 30"

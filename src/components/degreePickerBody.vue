@@ -258,8 +258,8 @@ watch(
   left: 50%;
   border-radius: 100%;
   border-style: solid;
-  border-color: v-bind("activeColor");
-  background-color: v-bind("activeColor");
+  border-color: v-bind(activeColor);
+  background-color: v-bind(activeColor);
   transform: translate(-50%, -50%);
 }
 
