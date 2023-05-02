@@ -39,11 +39,11 @@ const degrees = ref(0);
 
 ## 📃 Props
 
-| ID          | Type      | Default | Description                                                                          |
-| ----------- | --------- | ------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| `color`     | `string`  |         | Background color of the active value and clock hand                                  |
-| `v-model`   | `number`  |         | Standard two way input                                                               |
-| `width`     | `number   | string` |                                                                                      | Sets the width of the element - can be provided as a string like "290px" or "290" or a number, defaults to 290px |
-| `fullWidth` | `boolean` |         | Ignores the previous `width` prop and sets the width to 100% of the parent container |
-| `disabled`  | `boolean` |         | Makes the component unclickable                                                      |
-| `readonly`  | `boolean` |         | Makes the component unclickable, but does not make it seem disabled                  |
+| ID          | Type            | Default | Description                                                                                                      |
+| ----------- | --------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `color`     | `string`        |         | Background color of the active value and clock hand                                                              |
+| `v-model`   | `number`        |         | Standard two way input                                                                                           |
+| `width`     | `number/string` |         | Sets the width of the element - can be provided as a string like "290px" or "290" or a number, defaults to 290px |
+| `fullWidth` | `boolean`       |         | Ignores the previous `width` prop and sets the width to 100% of the parent container                             |
+| `disabled`  | `boolean`       |         | Makes the component unclickable                                                                                  |
+| `readonly`  | `boolean`       |         | Makes the component unclickable, but does not make it seem disabled                                              |

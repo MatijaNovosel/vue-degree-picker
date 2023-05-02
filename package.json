@@ -6,6 +6,19 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatijaNovosel/vue-date-picker.git"
+  },
+  "keywords": [
+    "degrees",
+    "vue3",
+    "vue",
+    "vuejs",
+    "degree-picker",
+    "radial-picker",
+    "radial"
+  ],
   "main": "./dist/degree-picker.umd.js",
   "module": "./dist/degree-picker.es.js",
   "exports": {
