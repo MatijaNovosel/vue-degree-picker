@@ -4,12 +4,42 @@
 
 <h1 align=center>Vue degree picker</h1>
 <p align=center>A degree picker component for Vue 3.</p>
-<p align=center>⚠ Currently a work in progress ⚠</p>
 
 ## 🚀 Installation
 
-Make sure to install the dependencies
+Install using your package manager of choice:
 
 ```bash
-yarn install
+yarn add degree-picker
 ```
+
+Register the component inside your `main.ts` file and import the stylesheet:
+
+```ts
+import degreePicker from "degree-picker";
+import "degree-picker/dist/degree-picker.css";
+
+const app = createApp(App);
+app.use(degreePicker);
+```
+
+## ⚙️ Usage
+
+```vue
+<template>
+  <degree-picker color="green" v-model="degrees" />
+</template>
+
+<script lang="ts" setup>
+import degreePicker from "./components/degreePicker.vue";
+import { ref } from "vue";
+const degrees = ref(0);
+</script>
+```
+
+## 📃 Props
+
+| ID        | Type     | Default | Description                                         |
+| --------- | -------- | ------- | --------------------------------------------------- |
+| `color`   | `string` |         | Background color of the active value and clock hand |
+| `v-model` | `number` |         | Standard two way input                              |

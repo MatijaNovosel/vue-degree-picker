@@ -181,7 +181,7 @@ watch(
 );
 </script>
 
-<style>
+<style scoped>
 .degree-picker-clock {
   font-family: "Roboto";
   background-color: #eee;
