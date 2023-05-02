@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{
-      width: props.fullWidth ? undefined : convertToUnit(props.width || 290),
+      width: props.fullWidth ? undefined : convertToUnit(props.width || 290)
     }"
   >
     <degree-picker-body
@@ -33,14 +33,14 @@ const props = defineProps<{
   readonly?: boolean;
   fullWidth?: boolean;
   color?: string;
-  modelValue: any;
+  modelValue: number;
   width?: number | string;
   step?: number;
 }>();
 
 const state = reactive({
   inputDegree: null as number | null,
-  lazyInputDegree: null as number | null,
+  lazyInputDegree: null as number | null
 });
 
 const onInput = (value: number) => {
