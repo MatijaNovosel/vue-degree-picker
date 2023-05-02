@@ -27,7 +27,7 @@ app.use(degreePicker);
 
 ```vue
 <template>
-  <degree-picker color="green" v-model="degrees" />
+  <degree-picker active-color="green" v-model="degrees" />
 </template>
 
 <script lang="ts" setup>
@@ -39,11 +39,13 @@ const degrees = ref(0);
 
 ## 📃 Props
 
-| ID          | Type            | Default | Description                                                                                                      |
-| ----------- | --------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `color`     | `string`        |         | Background color of the active value and clock hand                                                              |
-| `v-model`   | `number`        |         | Standard two way input                                                                                           |
-| `width`     | `number/string` | 290px   | Sets the width of the element - can be provided as a string like "290px" or "290" or a number, defaults to 290px |
-| `fullWidth` | `boolean`       |         | Ignores the previous `width` prop and sets the width to 100% of the parent container                             |
-| `disabled`  | `boolean`       |         | Makes the component unclickable                                                                                  |
-| `readonly`  | `boolean`       |         | Makes the component unclickable, but does not make it seem disabled                                              |
+| Name           | Type            | Default | Description                                                                                                      |
+| -------------- | --------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `active-color` | `string`        | #567a0d | Background color of the active value and clock hand                                                              |
+| `body-color`   | `string`        | #eee    | Background color of the picker body                                                                              |
+| `v-model`      | `number`        |         | Standard two way input                                                                                           |
+| `step`         | `number`        | 30      | The step used for displaying the degrees                                                                         |
+| `width`        | `number/string` | 290px   | Sets the width of the element - can be provided as a string like "290px" or "290" or a number, defaults to 290px |
+| `full-width`   | `boolean`       | false   | Ignores the previous `width` prop and sets the width to 100% of the parent container                             |
+| `disabled`     | `boolean`       | false   | Makes the component unclickable                                                                                  |
+| `readonly`     | `boolean`       | false   | Makes the component unclickable, but does not make it seem disabled                                              |

@@ -5,7 +5,8 @@
     }"
   >
     <degree-picker-body
-      :color="color"
+      :active-color="activeColor"
+      :body-color="activeColor"
       @input="onInput"
       @change="onChange"
       :step="step || 30"
@@ -26,17 +27,24 @@ const emit = defineEmits<{
   (e: "update:modelValue", degrees: number): void;
 }>();
 
-const props = defineProps<{
-  disabled?: boolean;
-  min?: string;
-  max?: string;
-  readonly?: boolean;
-  fullWidth?: boolean;
-  color?: string;
-  modelValue: number;
-  width?: number | string;
-  step?: number;
-}>();
+const props = withDefaults(
+  defineProps<{
+    disabled?: boolean;
+    min?: string;
+    max?: string;
+    readonly?: boolean;
+    fullWidth?: boolean;
+    activeColor?: string;
+    bodyColor?: string;
+    modelValue: number;
+    width?: number | string;
+    step?: number;
+  }>(),
+  {
+    activeColor: "#567a0d",
+    bodyColor: "#eee"
+  }
+);
 
 const state = reactive({
   inputDegree: null as number | null,
