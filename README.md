@@ -4,6 +4,7 @@
 
 <h1 align=center>Vue degree picker</h1>
 <p align=center>A degree picker component for Vue 3.</p>
+<p align=center>⚠ Currently a work in progress ⚠</p>
 
 ## 🚀 Installation
 
