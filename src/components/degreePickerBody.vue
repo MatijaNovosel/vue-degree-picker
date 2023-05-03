@@ -16,13 +16,20 @@
         }"
       >
         <div class="degree-picker-clock__inner">
-          <div class="degree-picker-clock__hand" :style="clockHandStyle" />
+          <div
+            class="degree-picker-clock__hand"
+            :class="{
+              'degree-picker-clock__hand--disabled': props.disabled
+            }"
+            :style="clockHandStyle"
+          />
           <span
             v-for="v in values"
             :key="v"
             class="degree-picker-clock__item"
             :class="{
-              'degree-picker-clock__item--active': v === displayedValue
+              'degree-picker-clock__item--active': v === displayedValue,
+              'degree-picker-clock__item--disabled': props.disabled
             }"
             :style="getTransform(v)"
           >
@@ -69,6 +76,8 @@ const state = reactive({
   valueOnMouseUp: null as number | null
 });
 
+const isInteractable = computed(() => !(props.readonly || props.disabled));
+
 const values = computed(() => {
   const res = [];
   for (let value = props.min; value < props.max; value = value + props.step) {
@@ -87,7 +96,12 @@ const clockHandStyle = computed(() => ({
   transform: `rotate(${
     degreesPerUnit.value * (displayedValue.value - props.min)
   }deg)`,
-  backgroundColor: props.value !== null ? props.activeColor : undefined
+  backgroundColor:
+    props.value !== null
+      ? props.disabled
+        ? "#8d7d7d"
+        : props.activeColor
+      : undefined
 }));
 
 const displayedValue = computed(() =>
@@ -109,7 +123,9 @@ const getTransform = (i: number) => {
     top: `${50 + y * 50}%`,
     backgroundColor:
       props.value !== null && i === displayedValue.value
-        ? props.activeColor
+        ? props.disabled
+          ? "#8d7d7d"
+          : props.activeColor
         : undefined
   };
 };
@@ -147,33 +163,39 @@ const setMouseDownValue = (value: number) => {
 };
 
 const onDragMove = (e: MouseEvent | TouchEvent) => {
-  e.preventDefault();
-  if ((!state.isDragging && e.type !== "click") || !clock.value) return;
-  const { width, top, left } = clock.value.getBoundingClientRect();
-  const { clientX, clientY } = "touches" in e ? e.touches[0] : e;
-  const center = { x: width / 2, y: -width / 2 };
-  const coords = { x: clientX - left, y: top - clientY };
-  const handAngle = Math.round(angle(center, coords) - 0 + 360) % 360;
-  const checksCount = Math.ceil(15 / degreesPerUnit.value);
-  let value;
-  for (let i = 0; i < checksCount; i++) {
-    value = angleToValue(handAngle + i * degreesPerUnit.value);
-    return setMouseDownValue(value);
+  if (isInteractable.value) {
+    e.preventDefault();
+    if ((!state.isDragging && e.type !== "click") || !clock.value) return;
+    const { width, top, left } = clock.value.getBoundingClientRect();
+    const { clientX, clientY } = "touches" in e ? e.touches[0] : e;
+    const center = { x: width / 2, y: -width / 2 };
+    const coords = { x: clientX - left, y: top - clientY };
+    const handAngle = Math.round(angle(center, coords) - 0 + 360) % 360;
+    const checksCount = Math.ceil(15 / degreesPerUnit.value);
+    let value;
+    for (let i = 0; i < checksCount; i++) {
+      value = angleToValue(handAngle + i * degreesPerUnit.value);
+      return setMouseDownValue(value);
+    }
   }
 };
 
 const onMouseDown = (e: MouseEvent | TouchEvent) => {
-  e.preventDefault();
-  state.valueOnMouseDown = null;
-  state.valueOnMouseUp = null;
-  state.isDragging = true;
-  onDragMove(e);
+  if (isInteractable.value) {
+    e.preventDefault();
+    state.valueOnMouseDown = null;
+    state.valueOnMouseUp = null;
+    state.isDragging = true;
+    onDragMove(e);
+  }
 };
 
 const onMouseUp = (e: MouseEvent | TouchEvent) => {
-  e.stopPropagation();
-  state.isDragging = false;
-  if (state.valueOnMouseUp !== null) emit("change", state.valueOnMouseUp);
+  if (isInteractable.value) {
+    e.stopPropagation();
+    state.isDragging = false;
+    if (state.valueOnMouseUp !== null) emit("change", state.valueOnMouseUp);
+  }
 };
 
 watch(
@@ -196,11 +218,7 @@ watch(
 }
 
 .degree-picker-clock__item--disabled {
-  color: pink;
-}
-
-.degree-picker-clock__item--disabled.degree-picker-clock__item--active {
-  color: purple;
+  color: rgb(177, 160, 160);
 }
 
 .degree-picker-clock--indeterminate .degree-picker-clock__hand {
@@ -249,6 +267,10 @@ watch(
   transform: translate(-50%, -50%);
 }
 
+.degree-picker-clock__hand--disabled:before {
+  border-color: #8d7d7d;
+}
+
 .degree-picker-clock__hand:after {
   content: "";
   position: absolute;
@@ -261,6 +283,11 @@ watch(
   border-color: v-bind(activeColor);
   background-color: v-bind(activeColor);
   transform: translate(-50%, -50%);
+}
+
+.degree-picker-clock__hand--disabled:after {
+  border-color: #8d7d7d;
+  background-color: #8d7d7d;
 }
 
 .degree-picker-clock__hand--inner:after {

@@ -13,6 +13,8 @@
       :min="0"
       :max="359"
       :value="state.inputDegree"
+      :disabled="disabled"
+      :readonly="readonly"
     />
   </div>
 </template>
