@@ -23,7 +23,7 @@ Import the component locally or define it globally and include the css file:
 </template>
 
 <script lang="ts" setup>
-import DegreePicker from "degree-picker";
+import { DegreePicker } from "degree-picker";
 import { ref } from "vue";
 import "degree-picker/dist/style.css";
 
