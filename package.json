@@ -24,8 +24,8 @@
   "module": "./dist/degree-picker.js",
   "exports": {
     ".": {
-      "import": "./dist/degree-picker.esm.js",
-      "require": "./dist/degree-picker.js"
+      "import": "./dist/degree-picker.js",
+      "require": "./dist/degree-picker.umd.cjs"
     }
   },
   "types": "./dist/index.d.ts",
