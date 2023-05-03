@@ -13,17 +13,9 @@ Install using your package manager of choice:
 yarn add degree-picker
 ```
 
-Register the component inside your `main.ts` file and import the stylesheet:
-
-```ts
-import degreePicker from "degree-picker";
-import "degree-picker/dist/degree-picker.css";
-
-const app = createApp(App);
-app.use(degreePicker);
-```
-
 ## ⚙️ Usage
+
+Import the component locally or define it globally and include the css file:
 
 ```vue
 <template>
@@ -31,7 +23,10 @@ app.use(degreePicker);
 </template>
 
 <script lang="ts" setup>
+import DegreePicker from "degree-picker";
 import { ref } from "vue";
+import "degree-picker/dist/style.css";
+
 const degrees = ref(0);
 </script>
 ```
