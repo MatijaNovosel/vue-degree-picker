@@ -31,11 +31,12 @@
       "require": "./dist/degree-picker.css"
     }
   },
-  "types": "./dist/main.d.ts",
+  "types": "./dist/types.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build && npm run generate:types",
+    "preview": "vite preview",
+    "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist"
   },
   "dependencies": {
     "vue": "^3.2.47"

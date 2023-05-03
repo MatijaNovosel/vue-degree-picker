@@ -27,24 +27,23 @@ const emit = defineEmits<{
   (e: "update:modelValue", degrees: number): void;
 }>();
 
-const props = withDefaults(
-  defineProps<{
-    disabled?: boolean;
-    min?: string;
-    max?: string;
-    readonly?: boolean;
-    fullWidth?: boolean;
-    activeColor?: string;
-    bodyColor?: string;
-    modelValue: number;
-    width?: number | string;
-    step?: number;
-  }>(),
-  {
-    activeColor: "#567a0d",
-    bodyColor: "#eee"
-  }
-);
+export interface Props {
+  disabled?: boolean;
+  min?: string;
+  max?: string;
+  readonly?: boolean;
+  fullWidth?: boolean;
+  activeColor?: string;
+  bodyColor?: string;
+  modelValue: number;
+  width?: number | string;
+  step?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  activeColor: "#567a0d",
+  bodyColor: "#eee"
+});
 
 const state = reactive({
   inputDegree: null as number | null,
