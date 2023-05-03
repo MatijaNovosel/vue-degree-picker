@@ -1,48 +1,21 @@
 import vue from "@vitejs/plugin-vue";
 import * as path from "path";
-import typescript2 from "rollup-plugin-typescript2";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    dts({
-      insertTypesEntry: true
-    }),
-    typescript2({
-      check: false,
-      include: ["src/components/**/*.vue"],
-      tsconfigOverride: {
-        compilerOptions: {
-          outDir: "dist",
-          sourceMap: true,
-          declaration: true,
-          declarationMap: true
-        }
-      },
-      exclude: ["vite.config.ts"]
-    })
-  ],
+  plugins: [vue(), dts()],
   build: {
     cssCodeSplit: true,
     lib: {
-      entry: "src/components/main.ts",
-      name: "degreePicker",
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "DegreePicker",
       formats: ["es", "cjs", "umd"],
-      fileName: (format) => `degree-picker.${format}.js`
+      fileName: "degree-picker"
     },
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "src/components/main.ts")
-      },
       external: ["vue"],
       output: {
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "main.css") return "degree-picker.css";
-          return assetInfo.name;
-        },
-        exports: "named",
         globals: {
           vue: "Vue"
         }

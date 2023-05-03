@@ -1,10 +1,11 @@
 {
   "name": "degree-picker",
   "private": false,
-  "version": "0.0.9",
+  "version": "0.0.8",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -20,26 +21,24 @@
     "radial"
   ],
   "main": "./dist/degree-picker.umd.js",
-  "module": "./dist/degree-picker.es.js",
+  "module": "./dist/degree-picker.js",
   "exports": {
     ".": {
-      "import": "./dist/degree-picker.es.js",
-      "require": "./dist/degree-picker.umd.js"
-    },
-    "./dist/degree-picker.css": {
-      "import": "./dist/degree-picker.css",
-      "require": "./dist/degree-picker.css"
+      "import": "./dist/degree-picker.esm.js",
+      "require": "./dist/degree-picker.js"
     }
   },
-  "types": "./dist/types.d.ts",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run generate:types",
-    "preview": "vite preview",
-    "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.2.47"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",

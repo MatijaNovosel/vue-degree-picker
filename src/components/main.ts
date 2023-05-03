@@ -1,5 +1,5 @@
-import { DegreePicker } from "@/components";
 import type { App } from "vue";
+import DegreePicker from "../components/degreePicker.vue";
 
 export default {
   install: (app: App) => {
