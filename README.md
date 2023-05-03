@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/36193643/235635449-37f4efc3-74c4-4750-a39c-e4f2339d5087.png" />
+  <img src="https://user-images.githubusercontent.com/36193643/235878084-9d2a7f8e-591a-4599-bc9c-b1336bc881f1.png" />
 </div>
 
 <h1 align=center>Vue degree picker</h1>
