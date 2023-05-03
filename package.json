@@ -26,6 +26,10 @@
     ".": {
       "import": "./dist/degree-picker.js",
       "require": "./dist/degree-picker.umd.cjs"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "types": "./dist/index.d.ts",
