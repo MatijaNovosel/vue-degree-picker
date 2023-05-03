@@ -6,11 +6,9 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [vue(), dts()],
   build: {
-    cssCodeSplit: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
       name: "DegreePicker",
-      formats: ["es", "cjs", "umd"],
       fileName: "degree-picker"
     },
     rollupOptions: {

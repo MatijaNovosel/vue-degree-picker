@@ -5,7 +5,7 @@
   "type": "module",
   "files": [
     "dist",
-    "src"
+    "src/components/"
   ],
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "radial-picker",
     "radial"
   ],
-  "main": "./dist/degree-picker.umd.js",
+  "main": "./dist/degree-picker.umd.cjs",
   "module": "./dist/degree-picker.js",
   "exports": {
     ".": {
@@ -43,8 +43,6 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
     "path": "^0.12.7",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "sass": "^1.62.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.2",
     "vite-plugin-dts": "^2.3.0",
