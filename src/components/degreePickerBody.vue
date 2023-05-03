@@ -54,7 +54,8 @@ const clock = ref<HTMLElement | null>(null);
 const props = defineProps<{
   disabled?: boolean;
   readonly?: boolean;
-  color?: string;
+  activeColor?: string;
+  bodyColor?: string;
   value: number | null;
   min: number;
   max: number;
@@ -86,7 +87,7 @@ const clockHandStyle = computed(() => ({
   transform: `rotate(${
     degreesPerUnit.value * (displayedValue.value - props.min)
   }deg)`,
-  backgroundColor: props.value !== null ? props.color : undefined
+  backgroundColor: props.value !== null ? props.activeColor : undefined
 }));
 
 const displayedValue = computed(() =>
@@ -108,7 +109,7 @@ const getTransform = (i: number) => {
     top: `${50 + y * 50}%`,
     backgroundColor:
       props.value !== null && i === displayedValue.value
-        ? props.color
+        ? props.activeColor
         : undefined
   };
 };
@@ -184,7 +185,7 @@ watch(
 <style scoped>
 .degree-picker-clock {
   font-family: "Roboto";
-  background-color: #eee;
+  background-color: v-bind(bodyColor);
   border-radius: 100%;
   position: relative;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
@@ -237,7 +238,7 @@ watch(
   background: transparent;
   border-width: 2px;
   border-style: solid;
-  border-color: v-bind(color);
+  border-color: v-bind(activeColor);
   border-radius: 100%;
   width: 10px;
   height: 10px;
@@ -257,8 +258,8 @@ watch(
   left: 50%;
   border-radius: 100%;
   border-style: solid;
-  border-color: v-bind("color");
-  background-color: v-bind("color");
+  border-color: v-bind(activeColor);
+  background-color: v-bind(activeColor);
   transform: translate(-50%, -50%);
 }
 
