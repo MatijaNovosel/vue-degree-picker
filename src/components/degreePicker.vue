@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, watch } from "vue";
 import degreePickerBody from "./degreePickerBody.vue";
 import { convertToUnit } from "./helpers";
 
@@ -63,6 +63,13 @@ const onChange = () => {
   state.lazyInputDegree = state.inputDegree;
   emit("change", state.inputDegree);
 };
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    state.inputDegree = val;
+  }
+);
 
 onMounted(() => (state.inputDegree = props.modelValue));
 </script>
