@@ -39,6 +39,8 @@ const degrees = ref(0);
 | `body-color`   | `string`        | #eee    | Background color of the picker body                                                                              |
 | `v-model`      | `number`        |         | Standard two way input                                                                                           |
 | `step`         | `number`        | 30      | The step used for displaying the degrees                                                                         |
+| `min`          | `number/string` | 0       | Minimum allowed value of the picker                                                                              |
+| `max`          | `number/string` | 359     | Maximum allowed value of the picker                                                                              |
 | `width`        | `number/string` | 290px   | Sets the width of the element - can be provided as a string like "290px" or "290" or a number, defaults to 290px |
 | `full-width`   | `boolean`       | false   | Ignores the previous `width` prop and sets the width to 100% of the parent container                             |
 | `disabled`     | `boolean`       | false   | Makes the component unclickable                                                                                  |
