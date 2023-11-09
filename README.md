@@ -13,6 +13,10 @@ Install using your package manager of choice:
 yarn add degree-picker
 ```
 
+## 📺 Demo
+
+https://matija-components.vercel.app/degree-picker
+
 ## ⚙️ Usage
 
 Import the component locally or define it globally and include the css file:
