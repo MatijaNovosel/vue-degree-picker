@@ -5,17 +5,17 @@
     }"
   >
     <degree-picker-body
-      :active-color="activeColor"
-      :body-color="bodyColor"
+      :active-color="props.activeColor"
+      :body-color="props.bodyColor"
       @input="onInput"
       @change="onChange"
-      :step="step ?? 15"
-      :snap-step="snapStep ?? step ?? 15"
+      :step="props.step ?? 15"
+      :snap-step="props.snapStep ?? props.step ?? 15"
       :min="props.min ? +props.min : 0"
       :max="props.max ? +props.max : 359"
       :value="state.inputDegree"
-      :disabled="disabled"
-      :readonly="readonly"
+      :disabled="props.disabled"
+      :readonly="props.readonly"
     />
   </div>
 </template>
@@ -76,6 +76,4 @@ watch(
 );
 
 onMounted(() => (state.inputDegree = props.modelValue));
-
-const { disabled, readonly, activeColor, bodyColor, step, snapStep } = props;
 </script>
