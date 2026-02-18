@@ -1,5 +1,5 @@
 <template>
-  <degree-picker disabled v-model="degrees" />
+  <degree-picker v-model="degrees" />
   {{ degrees }}
 </template>
 

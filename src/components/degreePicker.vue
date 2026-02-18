@@ -9,7 +9,8 @@
       :body-color="bodyColor"
       @input="onInput"
       @change="onChange"
-      :step="step || 30"
+      :step="step ?? 15"
+      :snap-step="snapStep ?? step ?? 15"
       :min="props.min ? +props.min : 0"
       :max="props.max ? +props.max : 359"
       :value="state.inputDegree"
@@ -40,11 +41,14 @@ export interface Props {
   modelValue: number;
   width?: number | string;
   step?: number;
+  snapStep?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   activeColor: "#567a0d",
-  bodyColor: "#eee"
+  bodyColor: "#eee",
+  step: 30,
+  snapStep: 15
 });
 
 const state = reactive({
@@ -72,4 +76,6 @@ watch(
 );
 
 onMounted(() => (state.inputDegree = props.modelValue));
+
+const { disabled, readonly, activeColor, bodyColor, step, snapStep } = props;
 </script>
